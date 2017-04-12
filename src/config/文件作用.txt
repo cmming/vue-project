@@ -1,0 +1,4 @@
+index.js:文件的出口
+request.js:所有的接口集中处理
+router.js:项目的路由配置
+settings.js:项目的接口根目录路径配置  请求的错误集中处理

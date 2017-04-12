@@ -1,0 +1,17 @@
+2017-04-01 10:27:24[log_88063116fabb92b9ed738acb4d91ea5c_1][Error][classAdmin::add_admin:100]写入管理员操作记录失败
+2017-04-01 10:27:37[log_a139cfe2c53fc4f3a003f1da6c55603a_1][Error][classAdmin::add_admin:100]写入管理员操作记录失败
+2017-04-01 10:27:46[log_be5f2a6497fe4fe2502cf4f280b9aaa8_1][Error][classAdmin::add_admin:100]写入管理员操作记录失败
+2017-04-01 10:27:59[log_82d55f4af8636666380b39d532f03f18_1][Error][classAdmin::add_admin:100]写入管理员操作记录失败
+2017-04-01 11:07:53[log_6affc2a5c20667b185ce445ec773a041_1][Error][classAdmin::login_confirm:149]写入管理员操作记录失败
+2017-04-01 11:08:06[log_afccf873bb7b788d7329b338bb269ec0_1][Error][classAdmin::login_confirm:149]写入管理员操作记录失败
+2017-04-01 11:08:29[log_4da7d977bebc4d2d4933fea7a1dabb2f_1][Error][classAdmin::login_confirm:149]写入管理员操作记录失败
+2017-04-01 11:08:36[log_d3e609e19821f3f5b645af7cb6aaee59_1][Error][classAdmin::login_confirm:149]写入管理员操作记录失败
+2017-04-01 11:09:12[log_917b3273ca9c0b16bc4de249766dfc8c_1][Error][classAdmin::login_confirm:149]写入管理员操作记录失败
+2017-04-01 11:43:51[log_7dc62f61225c5e538e7548e2f7df7a91_1][Error][classAdmin::login_confirm:160]表单数据缺失
+2017-04-01 11:44:56[log_5150bfdfbede445bf800d45d9b9eab7b_1][Error][classAdmin::login_confirm:160]表单数据缺失
+2017-04-01 11:45:21[log_6f5d12a8bdeb891bf82ff989bf401e2e_1][Error][classAdmin::login_confirm:160]表单数据缺失
+2017-04-01 11:45:39[log_95f7e795d534c9970433e166dcbe5268_1][Error][classAdmin::login_confirm:160]表单数据缺失
+2017-04-04 14:27:11[log_d14276620a217ca825a59de191b6aa9e_1][Error][Core_DBOper::DB_Connect:110]select db error host=127.0.0.1 db=vue_admin user=root mysql_err=Unknown database 'vue_admin'
+2017-04-04 14:27:11[log_d14276620a217ca825a59de191b6aa9e_2][Error][classAdmin::init_mysql_obj:50]连接数据库失败
+2017-04-04 14:27:27[log_3da2d9e2e20fb59e21b5ec76057989c4_1][Error][Core_DBOper::DB_Connect:110]select db error host=127.0.0.1 db=vue_admin user=root mysql_err=Unknown database 'vue_admin'
+2017-04-04 14:27:27[log_3da2d9e2e20fb59e21b5ec76057989c4_2][Error][classAdmin::init_mysql_obj:50]连接数据库失败
