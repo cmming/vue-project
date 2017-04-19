@@ -1,0 +1,44 @@
+登录
+D:\xampp\htdocs\ok_new\doc
+http://192.168.0.169/ok_new/api/login.php?uname=admin&pwd=admin
+增加管理员数据接口
+    1.增加商户
+      http://192.168.0.92/new_frame/iFile/api/addAdminData.php?aid=1&type=merchant&formdata={"uname":"wwwwy","name":"wwwwy","shopowner":"wuyan","sphone":"1111111111","mpnone":"22222222222","mpnone2":"333333333333","addr":"gdfgdfgsd","area":"151","staffs":"50","equip":"1|2|3","remarks":"fsdfsdfsdf"}
+    2.增加平台管理员
+      http://192.168.0.92/new_frame/iFile/api/addAdminData.php?type=admin&formdata={"ad_uname":"wwww1","ad_nick":"wwww1","ad_pwd":"21232f297a57a5a743894a0e4a801fc3","ad_role":"店长","phone":"333333333333"}
+修改管理员数据接口
+    1.修改平台管理员信息
+      http://192.168.0.92/new_frame/iFile/api/updateAdminData.php?updateid=4&type=admin&formdata={"ad_uname":"wwww222222"}
+    2.修改商户信息
+      http://192.168.0.92/new_frame/iFile/api/updateAdminData.php?updateid=4&type=merchant&formdata={"uname":"wwww222222"}
+    3.修改密码
+      http://192.168.0.92/new_frame/iFile/api/updateAdminData.php?updateid=14&type=updatePwd&formdata={"new_pwd":"654321","old_pwd":"123456"}
+ 
+删除管理员数据
+    1.删除平台管理员
+      http://192.168.0.92/new_frame/iFile/api/deleteAdminData.php?deleteid=4&type=admin
+    2.删除商户
+      http://192.168.0.92/new_frame/iFile/api/deleteAdminData.php?deleteid=4&type=merchant
+搜索管理员数据
+    1.搜索平台管理员
+      http://192.168.0.92/new_frame/iFile/api/searchAdminInfo.php?type=admin&search={"ad_nick":"w","page":"1"}
+    2.搜索商户
+      http://192.168.0.92/new_frame/iFile/api/searchAdminInfo.php?type=merchant&search={"name":"w","id":"","mint":"11000","maxt":"12000"}
+    3.搜索商户个体信息
+      http://192.168.0.92/new_frame/iFile/api/searchAdminInfo.php?type=getMerchantInfo&search={}
+搜索数据
+    1.搜索支付订单
+      http://192.168.0.92/new_frame/iFile/api/searchData.php?type=payorder&search={"page":"1","btime":"2016-09-18","etime":"2016-09-18","paytype":"102","mid":"3"}
+    2.获得首页数据
+      http://192.168.0.92/new_frame/iFile/api/searchData.php?type=indexdata&search={"guest_time":"2016-09","m_time":"2016-09"}
+    3.获得商户设备列表
+      http://192.168.0.92/new_frame/iFile/api/searchData.php?type=getMyDevice&search={}
+    4.获得活动信息
+      http://192.168.0.92/new_frame/iFile/api/searchData.php?type=getMyPackage&search={}         -- 生成订单时照此传入参数（search也可传入{"id":"","name":""},为之后活动列表做准备）
+功能接口
+    1.获得管理员菜单
+    http://192.168.0.92/new_frame/iFile/api/multiPorts.php?type=getMyMenu
+    2.获得所有菜单
+    http://192.168.0.92/new_frame/iFile/api/multiPorts.php?type=getMenu
+    3.获得不同管理员类型菜单
+    http://192.168.0.92/new_frame/iFile/api/multiPorts.php?type=getTypeMenu

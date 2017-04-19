@@ -1,0 +1,119 @@
+登录
+http://192.168.0.92/joy/admin/api/login.php?uname=admin&pwd=admin&ad_type=1
+增加管理员数据接口
+    1.增加商户
+      http://192.168.0.92/joy/admin/api/addAdminData.php?aid=1&type=merchant&formdata={"name":"wwwwy","shopowner":"wuyan","sphone":"1111111111","mpnone":"22222222222","mpnone2":"333333333333","addr":"gdfgdfgsd","area":"151","staffs":"50","equip":"1|2|3","remarks":"fsdfsdfsdf","menu_data":[{"menu_id":"46454654","menu_ext":""},{"menu_id":"456686563","menu_ext":""},{"menu_id":"5645656","menu_ext":"3563563546"},{"menu_id":"7657567","menu_ext":"3563563546"}]}
+    2.增加平台管理员
+      http://192.168.0.92/joy/admin/api/addAdminData.php?type=admin&formdata={"ad_uname":"qqq","ad_nick":"qqq","ad_pwd":"123456","ad_role":"aaa","phone":"13297032828","menu_data":[{"menu_id":"546416545","menu_ext":""},{"menu_id":"566365626","menu_ext":""},{"menu_id":"5465415645","menu_ext":"56446564"}]}
+增加数据接口
+    1.增加设备
+    http://192.168.0.92/joy/admin/api/addData.php?type=addTerm&formdata={"termid":"1111111111111","name":"1104","spid":"69","enable":"1"}
+    2.增加套餐
+    http://192.168.0.92/joy/admin/api/addData.php?type=addPackage&formdata={"mid":"69","name":"1104","price":"1","utime":"10","des":"aaaaaa","state":"1"}
+    3.增加提现要求
+    http://192.168.0.92/joy/admin/api/addData.php?type=billDemends&formdata={"mid":"69","money":"50","time":"5"}
+    4.增加套餐设备关系
+    http://192.168.0.92/joy/admin/api/addData.php?type=packageTermShip&formdata={"pid":"1","tid":"50"}
+    5.增加结算记录
+    http://192.168.0.92/joy/admin/api/addData.php?type=billPayRecord&formdata={"mid":"69","money":"500","btime":"2016-08-01","etime":"2016-08-30"}
+    6.增加商户激活码
+    http://192.168.0.92/joy/admin/api/addData.php?type=merchantCode&formdata={"mid":"69"}
+
+
+修改管理员数据接口
+    1.修改平台管理员信息
+      http://192.168.0.92/joy/admin/api/updateAdminData.php?updateid=95&type=admin&formdata={"ad_nick":"test930","menu_data":[{"menu_id":"546416545","menu_ext":""},{"menu_id":"566365626","menu_ext":""},{"menu_id":"5465415645","menu_ext":"56446564"}]}
+    2.管理员修改商户信息
+      http://192.168.0.92/joy/admin/api/updateAdminData.php?updateid=62&type=merchant&formdata={"name":"test930","menu_data":[{"menu_id":"546416545","menu_ext":""},{"menu_id":"566365626","menu_ext":""},{"menu_id":"5465415645","menu_ext":"56446564"}]}
+    3.修改密码
+      http://192.168.0.92/joy/admin/api/updateAdminData.php?updateid=14&type=updatePwd&formdata={"new_pwd":"654321","old_pwd":"123456"}
+    4.商户修改商户信息
+      http://192.168.0.92/joy/admin/api/updateAdminData.php?updateid=68&type=merchant_info&formdata={"name":"test930"}
+    5.修改商户的账户
+      http://192.168.0.92/joy/admin/api/updateAdminData.php?updateid=69&type=updateMerchantAccount&formdata={"account":"1114287642@qq.com"}
+ 修改数据接口
+    1.修改设备信息
+      http://192.168.0.92/joy/admin/api/updateData.php?updateid=312&type=term&formdata={"name":"test1104"}
+    2.修改套餐
+      http://192.168.0.92/joy/admin/api/updateData.php?updateid=69&type=package&formdata={"name":"test1104"}
+    3.修改提现要求
+      http://192.168.0.92/joy/admin/api/updateData.php?updateid=2&type=billDemends&formdata={"time":"15"}
+    4.修改提现记录状态（发放金钱）
+     http://192.168.0.92/joy/admin/api/updateData.php?updateid=28&type=billState&formdata={}
+
+
+删除管理员数据
+    1.删除平台管理员
+      http://192.168.0.92/joy/admin/api/deleteAdminData.php?deleteid=4&type=admin
+    2.删除商户
+      http://192.168.0.92/joy/admin/api/deleteAdminData.php?deleteid=4&type=merchant
+删除数据
+    1.删除设备
+      http://192.168.0.92/joy/admin/api/deleteData.php?deleteid=322&type=term
+    2.删除套餐
+      http://192.168.0.92/joy/admin/api/deleteData.php?deleteid=15&type=package
+    3.删除结算信息
+      http://192.168.0.92/joy/admin/api/deleteData.php?deleteid=2&type=billDemends
+    4.删除套餐设备关系
+      http://192.168.0.92/joy/admin/api/deleteData.php?deleteid=3&type=packageTermShip
+
+搜索管理员数据
+    1.搜索平台管理员
+      http://192.168.0.92/joy/admin/api/searchAdminInfo.php?type=admin&search={"ad_nick":"w","page":"1"}
+    2.搜索商户
+      http://192.168.0.92/joy/admin/api/searchAdminInfo.php?type=merchant&search={"name":"w","id":"","mint":"11000","maxt":"12000"}
+    3.搜索商户个体信息
+      http://192.168.0.92/joy/admin/api/searchAdminInfo.php?type=getMerchantInfo&search={}
+搜索数据
+    1.搜索支付订单
+      http://192.168.0.92/joy/admin/api/searchData.php?type=payorder&search={"page":"1","btime":"2016-09-18","etime":"2016-09-18","paytype":"102","mid":"3"}
+    2.获得首页数据
+      http://192.168.0.92/joy/admin/api/searchData.php?type=indexdata&search={"guest_time":"2016-09","m_time":"2016-09"}
+    3.获得商户设备列表
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getMyDevice&search={}
+    4.获得活动信息
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getMyPackage&search={}         -- 生成订单时照此传入参数（search也可传入{"id":"","name":""},为之后活动列表做准备）
+    5.获得账单
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getMyBill&search={"btime":"2016-08-01","etime":"2016-09-30","mid":""}  
+    6.获得商户结算信息
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getMerchantMoney&search={"btime":"2016-08-01","etime":"2016-09-30","mid":""} 
+    7.获得商户结算要求信息
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getDemendsInfo&search={"mid":"69"} 
+    8.根据设备ID获得套餐设备信息
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getShip&search={"tid":"50"} 
+    9.获得结算申请记录
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getBillPayRecord&search={}
+    10.获得激活码列表
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getActivityCode&search={"mid":""}
+    11.获得商户设备的可用套餐
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getTermPackage&search={"mid":"69","tid":"2"}
+    12.获得商户的可用余额（merchant）
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getMerchantBalance&search={}
+    13.获得所有商户的可用余额(sdk)
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getAllMerchantBalance&search={}
+    14.获得官方结算要求信息
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getCommonDemendsInfo&search={} 
+    15.获得可用的激活码
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getCodeNums&search={}
+    16.获得管理员操作ID
+      http://192.168.0.92/joy/admin/api/searchData.php?type=getAdminLog&search={"act":"delete"}
+
+
+功能接口
+    1.获得管理员菜单
+    http://192.168.0.92/joy/admin/api/multiPorts.php?type=getMyMenu
+    2.获得所有菜单
+    http://192.168.0.92/joy/admin/api/multiPorts.php?type=getMenu
+    3.获得不同管理员类型菜单
+    http://192.168.0.92/joy/admin/api/multiPorts.php?type=getTypeMenu&data={"ad_type":"1"}
+    4.创建菜单
+     http://192.168.0.92/joy/admin/api/multiPorts.php?type=createMenu&data=[{"ad_type":1,"menu_id":"546416545","menu_text":"\u9996\u9875","url":"main","menu_ext":"","index_flag":1},{"ad_type":1,"menu_id":"566365626","menu_text":"\u8ba2\u5355\u67e5\u8be2","url":"orderInquery","menu_ext":"","index_flag":0},{"ad_type":1,"menu_id":"5465415645","menu_text":"\u589e\u52a0\u5546\u6237","url":"addSeller","menu_ext":"56446564:\u5546\u6237\u7ba1\u7406","index_flag":0},{"ad_type":1,"menu_id":"2345353656","menu_text":"\u7ba1\u7406\u5546\u6237","url":"manageSeller","menu_ext":"56446564:\u5546\u6237\u7ba1\u7406","index_flag":0},{"ad_type":1,"menu_id":"54564564655","menu_text":"\u4fee\u6539\u7ba1\u7406\u5458","url":"changeManager","menu_ext":"564586554:\u8bbe\u7f6e","index_flag":0},{"ad_type":1,"menu_id":"35638363363","menu_text":"\u6dfb\u52a0\u7ba1\u7406\u5458","url":"addManager","menu_ext":"564586554:\u8bbe\u7f6e","index_flag":0},{"ad_type":1,"menu_id":"36546865635","menu_text":"\u7528\u6237\u5b89\u5168\u8bbe\u7f6e","url":"safeSetting","menu_ext":"564586554:\u8bbe\u7f6e","index_flag":1},{"ad_type":2,"menu_id":"546416545","menu_text":"\u9996\u9875","url":"main","menu_ext":"","index_flag":1},{"ad_type":2,"menu_id":"566365626","menu_text":"\u8ba2\u5355\u67e5\u8be2","url":"orderInquery","menu_ext":"","index_flag":0},{"ad_type":2,"menu_id":"5465415645","menu_text":"\u589e\u52a0\u5546\u6237","url":"addSeller","menu_ext":"56446564:\u5546\u6237\u7ba1\u7406","index_flag":0},{"ad_type":2,"menu_id":"2345353656","menu_text":"\u7ba1\u7406\u5546\u6237","url":"manageSeller","menu_ext":"56446564:\u5546\u6237\u7ba1\u7406","index_flag":0},{"ad_type":2,"menu_id":"54564564655","menu_text":"\u4fee\u6539\u7ba1\u7406\u5458","url":"changeManager","menu_ext":"564586554:\u8bbe\u7f6e","index_flag":0},{"ad_type":2,"menu_id":"35638363363","menu_text":"\u6dfb\u52a0\u7ba1\u7406\u5458","url":"addManager","menu_ext":"564586554:\u8bbe\u7f6e","index_flag":0},{"ad_type":2,"menu_id":"36546865635","menu_text":"\u7528\u6237\u5b89\u5168\u8bbe\u7f6e","url":"safeSetting","menu_ext":"564586554:\u8bbe\u7f6e","index_flag":1}]
+    5.创建管理员权限菜单
+    http://192.168.0.92/joy/admin/api/multiPorts.php?type=createAdminMenu&data=[{"menu_id":"546416545","menu_ext":""},{"menu_id":"566365626","menu_ext":""},{"menu_id":"5465415645","menu_ext":"56446564"},{"menu_id":"2345353656","menu_ext":"56446564"},{"menu_id":"54564564655","menu_ext":"564586554"},{"menu_id":"35638363363","menu_ext":"564586554"},{"menu_id":"36546865635","menu_ext":"564586554"}]
+    6.获得所有菜单中某个管理员已有的权限菜单
+    http://192.168.0.92/joy/admin/api/multiPorts.php?type=getMyPowerMenu&data={"ad_id":"54","ad_type":"2"}
+    7.申请提现
+    http://192.168.0.92/joy/admin/api/multiPorts.php?type=applyMoney&data={"money":"1000"}
+    8.生成激活码
+    http://192.168.0.92/joy/admin/api/multiPorts.php?type=createCode
+
