@@ -143,7 +143,7 @@ class data_operation{
 					$package_info = $this->get_package_info_byid($row['pid']);
 					//根据商户ID获得商户信息
 					$admin = new classAdmin();
-					$merchant_info = $admin->get_merchant_info_byid($row['mid']);
+					$merchant_info = $this->get_merchant_info_byid($row['mid']);
 					//var_dump($this->mysql);exit();
 
 					$tmp_arr['mid'] = isset($merchant_info['name'])?$merchant_info['name']:'未知商户';
@@ -160,6 +160,39 @@ class data_operation{
 				$data_arr['allpage'] = $allpage;
 				$this->_error_code = Core_Exception::CODE_DEAL_OK;
 				$this->_error_des = Core_Exception::getErrorDes(Core_Exception::CODE_DEAL_OK);
+			}
+			else
+			{
+				$this->_error_code = Core_Exception::CODE_DB_EXCUTE_ERROR;
+				$this->_error_des = Core_Exception::getErrorDes(Core_Exception::CODE_DB_EXCUTE_ERROR);
+				Core_Logger::getInstance()->writeLog(__METHOD__.":".__LINE__,$this->_error_des.',sql='.$sql,Core_Logger::LOG_LEVL_ERROR);
+			}
+		}
+		else
+		{
+			$this->_error_code = Core_Exception::CODE_DB_CONNECT_ERROR;
+			$this->_error_des = Core_Exception::getErrorDes(Core_Exception::CODE_DB_CONNECT_ERROR);
+			Core_Logger::getInstance()->writeLog(__METHOD__.":".__LINE__,$this->_error_des,Core_Logger::LOG_LEVL_ERROR);
+		}
+		return $data_arr;
+	}
+	//根据商户ID获得商户信息
+	public function get_merchant_info_byid($mid)
+	{
+		$data_arr = array();
+		if($this->init_mysql_obj())
+		{
+			$mid = mysql_real_escape_string($mid);
+			$sql = 'select * from t_merchant where id='.$mid;
+			if($result = $this->mysql->do_Query($sql))
+			{
+				$row = $this->mysql->DB_fetch_array($result,MYSQL_ASSOC);
+				if(!empty($row))
+				{
+					$this->_error_code = Core_Exception::CODE_DEAL_OK;
+					$this->_error_des = Core_Exception::getErrorDes(Core_Exception::CODE_DEAL_OK);
+					$data_arr = $row;
+				}
 			}
 			else
 			{
@@ -1145,6 +1178,7 @@ class data_operation{
 	public function add_term($formdata)
 	{
 		$ret = false;
+		// var_dump($formdata);
 		if($this->init_mysql_obj())
 		{
 			if(isset($formdata['termid'])&&isset($formdata['name'])&&isset($formdata['spid'])&&isset($formdata['enable']))
@@ -1162,19 +1196,19 @@ class data_operation{
 					if($this->mysql->DB_Query($sql))
 					{
 						//操作成功写入操作记录表
-						$data_arr = array('aid'=>$_SESSION['HTC_LOGIN_DATA']['ad_id'],'time'=>time(),'t_name'=>'t_term','act'=>'add','data'=>json_encode($formdata));
-						if($this->insert_into_admin_log($data_arr))
-						{
+						// $data_arr = array('aid'=>$_SESSION['HTC_LOGIN_DATA']['ad_id'],'time'=>time(),'t_name'=>'t_term','act'=>'add','data'=>json_encode($formdata));
+						// if($this->insert_into_admin_log($data_arr))
+						// {
 							$this->_error_code = Core_Exception::CODE_DEAL_OK;
 							$this->_error_des = Core_Exception::getErrorDes(Core_Exception::CODE_DEAL_OK);
 							$ret = true;
-						}
-						else
-						{
-							$this->_error_code = Core_Exception::CODE_ADMIN_LOG_ERROR;
-							$this->_error_des = Core_Exception::getErrorDes(Core_Exception::CODE_ADMIN_LOG_ERROR);
-							Core_Logger::getInstance()->writeLog(__METHOD__.":".__LINE__,$this->_error_des,Core_Logger::LOG_LEVL_ERROR);
-						}
+						// }
+						// else
+						// {
+						// 	$this->_error_code = Core_Exception::CODE_ADMIN_LOG_ERROR;
+						// 	$this->_error_des = Core_Exception::getErrorDes(Core_Exception::CODE_ADMIN_LOG_ERROR);
+						// 	Core_Logger::getInstance()->writeLog(__METHOD__.":".__LINE__,$this->_error_des,Core_Logger::LOG_LEVL_ERROR);
+						// }
 					}
 					else
 					{

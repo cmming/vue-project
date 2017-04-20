@@ -73,7 +73,15 @@ const routes = [
         },{
             path: '/elementTree',
             title:"elementTree",
-            component: resolve => require(['../view/elementForm.vue'], resolve)
+            component: resolve => require(['../view/elementTree.vue'], resolve)
+        },{
+            path: '/addTerm',
+            title:"添加设备",
+            component: resolve => require(['../view/addTerm.vue'], resolve)
+        },{
+            path: '/orderInquery',
+            title:"订单查询",
+            component: resolve => require(['../view/orderInquery.vue'], resolve)
         },{
             // 登陆后默认跳转的页面
             path: '/',

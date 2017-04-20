@@ -54,6 +54,34 @@ const allAjax = {
         getSignl(index, fn) {
             this.$http.get('/dataTable.php').then(fn)
         }
+    },
+
+    // 添加数据的api 集合 将类型放在这里
+    addData:{
+        /**
+         * 添加设备
+         * 
+         * @param {data} 表单数据 
+         * @param {fn} 成功回调 
+         */
+        addTerm(data,fn){
+            this.$http.post('/addData.php',{
+                'type':"addTerm",'formdata':data
+            }).then(fn)
+        }
+    },
+    searchData:{
+        /**
+         * 订单查询
+         * 
+         * @param {any} data 
+         * @param {any} fn 
+         */
+        payorder(data,fn){
+            this.$http.post('/searchData.php',{
+                'type':"payorder",'search':data
+            }).then(fn)
+        }
     }
 };
 

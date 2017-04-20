@@ -110,6 +110,16 @@
                     childMenu: [{
                         title: "tree",
                         path: "/elementTree"
+                    },{
+                        title: "添加设备",
+                        path: "/addTerm"
+                    }]
+                },{
+                    title:"查询",
+                    iconFont: "fa-search",
+                    childMenu: [{
+                        title: "订单查询",
+                        path: "/orderInquery"
                     }]
                 }],
             }

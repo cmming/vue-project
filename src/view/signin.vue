@@ -2,7 +2,7 @@
 	<div class="sign-in-wrapper">
 		<div class="sign-in-inner">
 			<div class="login-brand text-center">
-				<i class="fa fa-database m-right-xs" v-show="false"></i> 蓝光vr <strong class="text-skin">管理后台</strong>
+				<!--<i class="fa fa-database m-right-xs" v-show="false"></i> 蓝光vr <strong class="text-skin">管理后台</strong>-->
 			</div>
 
 			<form>

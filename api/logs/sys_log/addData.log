@@ -15,3 +15,18 @@
 2017-04-04 14:27:11[log_d14276620a217ca825a59de191b6aa9e_2][Error][classAdmin::init_mysql_obj:50]连接数据库失败
 2017-04-04 14:27:27[log_3da2d9e2e20fb59e21b5ec76057989c4_1][Error][Core_DBOper::DB_Connect:110]select db error host=127.0.0.1 db=vue_admin user=root mysql_err=Unknown database 'vue_admin'
 2017-04-04 14:27:27[log_3da2d9e2e20fb59e21b5ec76057989c4_2][Error][classAdmin::init_mysql_obj:50]连接数据库失败
+2017-04-20 11:23:23[log_6cd40e0fd23ec082c90695bf64193f4c_1][Error][data_operation::add_term:1198]表单数据缺失
+2017-04-20 11:23:43[log_8d55689298b75e07b6dca95ab008d66a_1][Debug][data_operation::data_operation::insert_into_admin_log:3029]sql=insert into t_admin_log(aid,time,t_name,act,data) values("","1492658623","t_term","add","{\"termid\":\"123123\",\"name\":\"12312\",\"spid\":\"\",\"enable\":\"0\"}")
+2017-04-20 11:23:43[log_8d55689298b75e07b6dca95ab008d66a_2][Error][data_operation::data_operation::insert_into_admin_log:3035]数据库操作失败 sql=insert into t_admin_log(aid,time,t_name,act,data) values("","1492658623","t_term","add","{\"termid\":\"123123\",\"name\":\"12312\",\"spid\":\"\",\"enable\":\"0\"}")
+2017-04-20 11:23:43[log_8d55689298b75e07b6dca95ab008d66a_3][Error][data_operation::add_term:1177]写入管理员操作记录失败
+2017-04-20 11:26:04[log_8deb6040db190da6e5ccab9065b928d3_1][Error][data_operation::add_term:1191]终端设备标识已存在
+2017-04-20 11:26:18[log_4a3da437592cce41b43c7698a6e2d92c_1][Error][data_operation::add_term:1191]终端设备标识已存在
+2017-04-20 11:31:57[log_bb9237860fa349228f95c43e7ea19557_1][Error][data_operation::add_term:1191]终端设备标识已存在
+2017-04-20 11:32:59[log_1f044a4a068bd4869b06e81348c36e87_1][Error][data_operation::add_term:1191]终端设备标识已存在
+2017-04-20 11:33:03[log_72460d77c25b31aa75edf4e0988aa964_1][Error][data_operation::add_term:1191]终端设备标识已存在
+2017-04-20 11:34:18[log_2e8fe396cc5a11e7d5cc256b5816a3b6_1][Error][data_operation::add_term:1191]终端设备标识已存在
+2017-04-20 11:37:09[log_7326788e35fb04f916533c339ea03754_1][Error][data_operation::add_term:1191]终端设备标识已存在
+2017-04-20 11:37:26[log_0d23af2cb8bd15c46cb96d3130687448_1][Error][data_operation::add_term:1191]终端设备标识已存在
+2017-04-20 11:37:47[log_37e3339bdf81fcee839a6f62e98f71e8_1][Error][data_operation::add_term:1191]终端设备标识已存在
+2017-04-20 11:38:22[log_eae77055acf47fb6a1e8a6f50f75cd62_1][Error][data_operation::add_term:1191]终端设备标识已存在
+2017-04-20 11:59:40[log_de9f930b80216cab07b75e5d77f24ccd_1][Error][data_operation::add_term:1191]终端设备标识已存在

@@ -28,13 +28,15 @@ $type = isset($request_data['type'])?$request_data['type']:'';
 $formdata = isset($request_data['formdata'])?$request_data['formdata']:'';
 //$type = isset($_REQUEST['type'])?$_REQUEST['type']:'';
 //$formdata = isset($_REQUEST['formdata'])?$_REQUEST['formdata']:'';
+// var_dump($formdata,$type,$type&&$formdata);
 if($type&&$formdata)
 {
 	//验证是否登录
-	if(check_login())
+	if(check_login()||1)
 	{
 		//判断是否有权限操作本接口
-		$formdata = json_decode($formdata,true);
+		// $formdata = json_decode($formdata,true);
+		// var_dump($formdata,$type);
 		//实例化功能操作类
 		$data_operation = new data_operation();
 		switch($type)

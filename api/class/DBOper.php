@@ -97,7 +97,7 @@ class Core_DBOper
 		}
 		if($this->_db_conn == null)
 		{
-			$this->_db_conn = mysql_connect($this->_db_host,$this->_db_id,$this->_db_pwd,1);
+			$this->_db_conn = @mysql_connect($this->_db_host,$this->_db_id,$this->_db_pwd,1);
 		}
 		if($this->_db_conn)
 		{

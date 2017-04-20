@@ -29,7 +29,7 @@ module.exports = {
     assetsPublicPath: '/',
      proxyTable: {
       '/api': {
-        target: 'http://127.0.0.1/vue-cli/demo/api/',
+        target: 'http://192.168.0.88/vue/vue-project/api/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

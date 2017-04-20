@@ -31,10 +31,10 @@ $search = isset($request_data['search'])?$request_data['search']:'';
 if($type&&$search)
 {
 	//验证是否登录
-	if(check_login())
+	if(check_login()||1)
 	{
 		$data_arr = array();
-		$search = json_decode($search,true);
+		// $search = json_decode($search,true);
 		$data_operation = new data_operation();
 		switch($type)
 		{
