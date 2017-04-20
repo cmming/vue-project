@@ -147,9 +147,4 @@
         text-align: center;
         vertical-align: middle!important;
     }
-    
-    .fa-border {
-        border: 1px solid #dfdfdf;
-        padding: 3px;
-    }
 </style>
