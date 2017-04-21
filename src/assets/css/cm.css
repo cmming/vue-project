@@ -167,3 +167,13 @@ a{
 .icon-absolute-right+input{
     padding-right: 25px
 }
+/*cm select*/
+select.styled-select {
+   background: transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   height: 34px;
+   -webkit-appearance: none; /*for chrome*/
+}

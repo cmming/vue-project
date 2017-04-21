@@ -60,12 +60,14 @@ import deleteModel from './components/common/delete-weight.vue'
 import breadcrumb from './components/common/breadcrumb.vue'
 import errorMsg from './components/common/formError.vue'
 import page from './components/common/page.vue'
+import selectForShowCol from './components/common/selectForShowCol.vue'
 
 
 Vue.component('v-deleteModel', deleteModel)
 Vue.component('v-breadcrumb', breadcrumb)
 Vue.component('v-errorMsg', errorMsg)
 Vue.component('v-page', page)
+Vue.component('v-selectForShowCol', selectForShowCol)
 
 // import  './element-ui.js'
 

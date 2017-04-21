@@ -234,8 +234,10 @@ class data_operation{
 			$mid = isset($_SESSION['HTC_LOGIN_DATA']['ad_tid'])?$_SESSION['HTC_LOGIN_DATA']['ad_tid']:'';
 			// cm 关键字关联订单号
 			$keyword=isset($search_arr['keyword'])?mysql_real_escape_string($search_arr['keyword']):'';
-
-			$sql = 'select * from t_pay_record where mid='.$mid.' ';
+			
+			$sql = 'select * from t_pay_record where mid="'.$mid.'" ';
+			if(empty($mid))
+			$sql = 'select * from t_pay_record where 1=1';
 			if($btime)
 				$sql .= ' and unix_timestamp(ctime)>='.$btime;
 			if($etime)

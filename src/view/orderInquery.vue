@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-ansyimgpage="{'ansy':2000}">
         <v-breadcrumb :breadcrumbData="toBreadcrumb"></v-breadcrumb>
         <!--数据筛选区域-->
         <div></div>
@@ -12,93 +12,108 @@
             <button type="button" class="btn btn-warning btn-xs" @click="edit(chooseItem)">
                 <i class="fa fa-edit fa-fw"></i>
                 修改
-            </button> 
+            </button>
             <button type="button" class="btn btn-success btn-xs" @click="edit(chooseItem)">
                 <i class="fa fa-check-circle-o fa-fw"></i>
                 阅读
-            </button> 
+            </button>
         </div>
+        <!--控制展示行-->
+        <v-selectForShowCol :tableHeader="tableHeader"></v-selectForShowCol>
         <!--数据展示区域-->
-        <table class="table table-responsive table-condensed table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>多选</th>
-                    <th>编号</th>
-                    <th>姓名</th>
-                    <th>订单生成时间</th>
-                    <th>性别</th>
-                    <th>money</th>
-                    <th>健康状态</th>
-                    <!--<th>操作</th>-->
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item,key) in dataList">
-                    <td>
-                        <div class="custom-radio">
-                            <input type="radio" :id="key" name="chooseItem" :value="item.id" v-model="chooseItem">
-                            <label :for="key"></label>
-                        </div>
-                    </td>
-                    <td>{{item.uid}}</td>
-                    <td>{{item.mid}}</td>
-                    <td>{{item.mtime}}</td>
-                    <td>{{item.paytype}}</td>
-                    <td>{{item.money}}</td>
-                    <td>{{item.uid |healthState(item.uid)}}</td>
-                    <!--<td>
-                        <button type="button" class="btn btn-danger btn-xs" @click="del(item.id)"> 
-                            <i class="fa fa-trash-o fa-fw"></i>
-                            删除
-                        </button>
-                        <button type="button" class="btn btn-warning btn-xs">
-                            <i class="fa fa-edit fa-fw"></i>
-                            修改
-                        </button>
-                    </td>-->
-                </tr>
-            </tbody>
-        </table>
+
+        <div style="overflowX:auto">
+            <table class="table table-responsive table-condensed table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>多选</th>
+                        <th v-for="(headerItem,key) in tableHeader" v-show="headerItem.val">{{headerItem.name}}</th>
+                        <!--<th>操作</th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,key) in dataList">
+                        <td>
+                            <div class="custom-radio">
+                                <input type="radio" :id="key" name="chooseItem" :value="item.id" v-model="chooseItem">
+                                <label :for="key"></label>
+                            </div>
+                        </td>
+                        <td v-show="tableHeader[0].val">{{item.uid}}</td>
+                        <td v-show="tableHeader[1].val">{{item.id}}</td>
+                        <td v-show="tableHeader[2].val">{{item.mtime}}</td>
+                        <td v-show="tableHeader[3].val">{{item.gtime}}</td>
+                        <td v-show="tableHeader[4].val">{{item.paytype}}</td>
+                        <td v-show="tableHeader[5].val">{{item.money}}</td>
+                        <td v-show="tableHeader[6].val">{{item.uid |healthState(item.uid)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <v-page :curPage="curpage" :allPage="allPage" @btn-click='listen'></v-page>
+
+
     </div>
 </template>
 <script>
     import allAjax from '../api/request.js'
     import { mapGetters, mapActions } from 'vuex'
+    // 引入图片
+    import testSrc from '../assets/images/img11.jpg'
 
     export default {
         data() {
             return {
                 // 初始化导航栏数据
+                imgUrl: '//www.baidu.com/img/baidu_jgylogo3.gif',
+                // imgUrl:testSrc,
                 toBreadcrumb: [
                     { path: 'main', name: '主页' },
                     { path: 'orderInquery', name: '订单查询' },
                 ],
                 // 列表数据
+                tableHeader: [
+                    { 'name':'编号','val':1},
+                    { 'name':'姓名','val':1},
+                    { 'name':'订单生成时间','val':1},
+                    { 'name':'剩余时间','val':1},
+                    { 'name':'性别','val':1},
+                    { 'name':'money','val':1},
+                    { 'name':'健康状态','val':1},
+                ],
                 dataList: [],
                 chooseItem: '',
-                searchData:{"page":'1',"btime":"","etime":"","paytype":"","mid":""},
-                allPage:'',
-                curpage:1
+                searchData: { "page": '1', "btime": "", "etime": "", "paytype": "102", "mid": "" },
+                allPage: '',
+                curpage: 1
             }
         },
         created() {
             this.getData();
         },
         methods: {
+            // showCol(){
+            //     console.log(this.tableHeader);
+            // },
             // 监视分页 点击事件
-            listen(data){
-                this.curpage=data;
-                this.searchData.page=data;
+            listen(data) {
+                this.curpage = data;
+                this.searchData.page = data;
                 this.getData();
+                if (data == this.allPage) {
+                    this.$message({
+                        type: 'warning',
+                        message: '最后一页!'
+                    });
+                }
             },
             getData() {
                 var self = this;
-                allAjax.searchData.payorder.call(this,this.searchData ,function (response) {
+                allAjax.searchData.payorder.call(this, this.searchData, function (response) {
                     if (response.data.code === "200") {
-                            self.dataList = response.data.data.data;
-                            self.allPage = response.data.data.allpage;
-                        }
+                        self.dataList = response.data.data.data;
+                        self.allPage = response.data.data.allpage;
+                    }
                 });
             },
             del(index) {
@@ -107,18 +122,18 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    
-                        this.$message({
-                            type: 'success',
-                            message: '删除成功!'
-                        });
+
+                    this.$message({
+                        type: 'success',
+                        message: '删除成功!'
+                    });
                 }).catch(() => {
-                        this.$message({
-                            type: 'info',
-                            message: '已取消删除'
-                        });          
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
                 });
-               
+
             },
             edit(index) {
                 // 1.利用一次的请求缓存 但是并不保险
@@ -133,7 +148,7 @@
                 //     console.log(response);
                 // })
                 // 2.仅将主键传递到详情页面然后，详情页更具主键进行再次请求数据
-                if(index){
+                if (index) {
                     this.$router.push('/tableDetail/' + index);
                 }
             }
