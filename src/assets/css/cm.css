@@ -177,3 +177,10 @@ select.styled-select {
    height: 34px;
    -webkit-appearance: none; /*for chrome*/
 }
+/*修改message在手机下的宽度*/
+
+@media (max-width: 991px){
+    .el-message-box{
+        width: 80%
+    }
+}

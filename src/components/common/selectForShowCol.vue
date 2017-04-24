@@ -1,6 +1,9 @@
 <template>
     <div>
-        <div class="header" @click="clickShow">选择显示的列</div>
+        <div class="header" @click="clickShow">
+            选择显示的列
+            <i :class="{'fa headerIcon':true,'fa-sort-desc':!colsShow,'fa-sort-up':colsShow}"></i> 
+        </div>
         <ul class="ulContainer" v-show="colsShow">
             <!--<optgroup label="显示的列">-->
             <li v-for="(itemHeader,k) in tableHeader" name="showCol" value="itemHeader.val"><input :checked="itemHeader.val" @click="changeState(k)" type="checkbox">{{itemHeader.name}}</li>
@@ -57,5 +60,8 @@
     }
     .ulContainer li input{
         vertical-align: sub
+    }
+    .headerIcon{
+        float: right;
     }
 </style>

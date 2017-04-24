@@ -2,55 +2,93 @@
     <div v-ansyimgpage="{'ansy':2000}">
         <v-breadcrumb :breadcrumbData="toBreadcrumb"></v-breadcrumb>
         <!--数据筛选区域-->
-        <div></div>
-        <!--数据操作区域-->
-        <div>
-            <button type="button" class="btn btn-danger btn-xs" @click="del(chooseItem)"> 
-                <i class="fa fa-trash-o fa-fw"></i>
-                删除
-            </button>
-            <button type="button" class="btn btn-warning btn-xs" @click="edit(chooseItem)">
-                <i class="fa fa-edit fa-fw"></i>
-                修改
-            </button>
-            <button type="button" class="btn btn-success btn-xs" @click="edit(chooseItem)">
-                <i class="fa fa-check-circle-o fa-fw"></i>
-                阅读
-            </button>
+        <div class="container bg-white padding-md">
+            <div class="row">
+                <div class="col-md-1 col-sm-2 font-600">筛选区：</div>
+                <div class="col-md-11 col-sm-10 pull-left">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            开始日期：
+                            <el-date-picker type="date" placeholder="选择日期" v-model="searchData.btime"></el-date-picker>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            结束日期：
+                            <el-date-picker type="date" placeholder="选择日期" v-model="searchData.etime"></el-date-picker>
+                        </div>
+                        <div class="col-md-4">
+                            商 户 ID:
+                            <el-autocomplete icon="search" v-model="searchData.mid" :fetch-suggestions="querySearchAsync" placeholder="请输入内容" @select="handleSelect" :on-icon-click="searchCal"></el-autocomplete>
+                            <!--<button type="button" class="btn btn-success" @click="edit(chooseItem)">
+                                <i class="fa fa-search fa-fw"></i>
+                                搜索
+                            </button>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--数据操作区域-->
+            <div class="m-top-xs row">
+                <div class="font-600 col-md-1 col-sm-2">操作区:</div>
+                <div class="col-md-11 col-sm-10">
+                    <button type="button" class="btn btn-danger btn-sm" @click="del(chooseItem)"> 
+                        <i class="fa fa-trash-o fa-fw"></i>
+                        删除
+                    </button>
+                    <button type="button" class="btn btn-warning btn-sm" @click="edit(chooseItem)">
+                        <i class="fa fa-edit fa-fw"></i>
+                        修改
+                    </button>
+                    <button type="button" class="btn btn-success btn-sm" @click="edit(chooseItem)">
+                        <i class="fa fa-check-circle-o fa-fw"></i>
+                        阅读
+                    </button>
+                </div>
+            </div>
+            <!--控制展示行-->
+            <div class="m-top-xs row">
+                <div class="font-600 col-md-1 col-sm-12">控制列:</div>
+                <v-selectForShowCol class="inline-block col-md-11 col-sm-12" :tableHeader="tableHeader"></v-selectForShowCol>
+            </div>
         </div>
-        <!--控制展示行-->
-        <v-selectForShowCol :tableHeader="tableHeader"></v-selectForShowCol>
         <!--数据展示区域-->
 
-        <div style="overflowX:auto">
-            <table class="table table-responsive table-condensed table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>多选</th>
-                        <th v-for="(headerItem,key) in tableHeader" v-show="headerItem.val">{{headerItem.name}}</th>
-                        <!--<th>操作</th>-->
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(item,key) in dataList">
-                        <td>
-                            <div class="custom-radio">
-                                <input type="radio" :id="key" name="chooseItem" :value="item.id" v-model="chooseItem">
-                                <label :for="key"></label>
-                            </div>
-                        </td>
-                        <td v-show="tableHeader[0].val">{{item.uid}}</td>
-                        <td v-show="tableHeader[1].val">{{item.id}}</td>
-                        <td v-show="tableHeader[2].val">{{item.mtime}}</td>
-                        <td v-show="tableHeader[3].val">{{item.gtime}}</td>
-                        <td v-show="tableHeader[4].val">{{item.paytype}}</td>
-                        <td v-show="tableHeader[5].val">{{item.money}}</td>
-                        <td v-show="tableHeader[6].val">{{item.uid |healthState(item.uid)}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="m-top-md bg-white padding-xs" style="overflowX:auto">
+            <div v-show="allPage">
+                <table class="table table-responsive table-condensed table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>多选1</th>
+                            <th v-for="(headerItem,key) in tableHeader" v-show="headerItem.val">{{headerItem.name}}</th>
+                            <!--<th>操作</th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,key) in dataList">
+                            <td>
+                                <div class="custom-radio">
+                                    <input type="radio" :id="key" name="chooseItem" :value="item.id" v-model="chooseItem">
+                                    <label :for="key"></label>
+                                </div>
+                            </td>
+                            <td v-show="tableHeader[0].val">{{item.uid}}</td>
+                            <td v-show="tableHeader[1].val">{{item.id}}</td>
+                            <td v-show="tableHeader[2].val">{{item.mtime}}</td>
+                            <td v-show="tableHeader[3].val">{{item.gtime}}</td>
+                            <td v-show="tableHeader[4].val">{{item.paytype}}</td>
+                            <td v-show="tableHeader[5].val">{{item.money}}</td>
+                            <td v-show="tableHeader[6].val">{{item.uid |healthState(item.uid)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <v-page :curPage="curpage" :allPage="allPage" @btn-click='listen'></v-page>
+            </div>
+            <div v-show="!allPage">
+                <div class="alert" ng-hide="orderView">
+                    <strong>抱歉！</strong> 没有相关数据
+                </div>
+            </div>
         </div>
-        <v-page :curPage="curpage" :allPage="allPage" @btn-click='listen'></v-page>
 
 
     </div>
@@ -73,28 +111,67 @@
                 ],
                 // 列表数据
                 tableHeader: [
-                    { 'name':'编号','val':1},
-                    { 'name':'姓名','val':1},
-                    { 'name':'订单生成时间','val':1},
-                    { 'name':'剩余时间','val':1},
-                    { 'name':'性别','val':1},
-                    { 'name':'money','val':1},
-                    { 'name':'健康状态','val':1},
+                    { 'name': '编号', 'val': 1 },
+                    { 'name': '姓名', 'val': 1 },
+                    { 'name': '订单生成时间', 'val': 1 },
+                    { 'name': '剩余时间', 'val': 1 },
+                    { 'name': '性别', 'val': 1 },
+                    { 'name': 'money', 'val': 1 },
+                    { 'name': '健康状态', 'val': 1 },
                 ],
                 dataList: [],
                 chooseItem: '',
                 searchData: { "page": '1', "btime": "", "etime": "", "paytype": "102", "mid": "" },
                 allPage: '',
-                curpage: 1
+                curpage: 1,
+                restaurants:[]
+                
             }
         },
         created() {
             this.getData();
+            this.restaurants = this.loadAll();
         },
         methods: {
-            // showCol(){
-            //     console.log(this.tableHeader);
-            // },
+            searchCal(ev){
+                console.log(ev);
+                this.getData();
+            },
+             loadAll() {
+                return [
+                    { "value": "三全鲜食（北新泾店）", "address": "长宁区新渔路144号" },
+                    { "value": "Hot honey 首尔炸鸡（仙霞路）", "address": "上海市长宁区淞虹路661号" },
+                    { "value": "新旺角茶餐厅", "address": "上海市普陀区真北路988号创邑金沙谷6号楼113" },
+                    { "value": "泷千家(天山西路店)", "address": "天山西路438号" },
+                    { "value": "胖仙女纸杯蛋糕（上海凌空店）", "address": "上海市长宁区金钟路968号1幢18号楼一层商铺18-101" },
+                    { "value": "贡茶", "address": "上海市长宁区金钟路633号" },
+                    { "value": "豪大大香鸡排超级奶爸", "address": "上海市嘉定区曹安公路曹安路1685号" },
+                    { "value": "茶芝兰（奶茶，手抓饼）", "address": "上海市普陀区同普路1435号" },
+                ];
+            },
+            // 异步搜索框 
+            querySearchAsync(queryString, cb){
+                var restaurants = this.restaurants;
+                console.log(queryString,restaurants.filter(this.createStateFilter(queryString)));
+                // 对返回值进行处理 （排序）
+                var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
+                cb(results);
+                // 制作延迟出现的代码
+                // clearTimeout(this.timeout);
+                // this.timeout = setTimeout(() => {
+                // cb(results);
+                // }, 3000 * Math.random());
+            },
+            // 对返回值进行处理
+            createStateFilter(queryString) {
+                return (state) => {
+                return (state.value.indexOf(queryString.toLowerCase()) === 0);
+                };
+            },
+            // 选中一个元素的返回值
+            handleSelect(item){
+                console.log(item);
+            },
             // 监视分页 点击事件
             listen(data) {
                 this.curpage = data;
@@ -113,6 +190,12 @@
                     if (response.data.code === "200") {
                         self.dataList = response.data.data.data;
                         self.allPage = response.data.data.allpage;
+                    }else{
+                        self.allPage=0;
+                        self.$message({
+                            type:"warning",
+                            message:response.data.msg
+                        });
                     }
                 });
             },
@@ -136,18 +219,6 @@
 
             },
             edit(index) {
-                // 1.利用一次的请求缓存 但是并不保险
-                // this.$http.get(baseUrl + 'dataTable.php').then(response => {
-                //     var self=this;
-                //     (response.data).forEach(function(element) {
-                //         if(element.id===index){
-                //             self.$router.push('/tableDetail/'+JSON.stringify(element));
-                //         }
-                //     }, this);
-                // }, response => {
-                //     console.log(response);
-                // })
-                // 2.仅将主键传递到详情页面然后，详情页更具主键进行再次请求数据
                 if (index) {
                     this.$router.push('/tableDetail/' + index);
                 }
@@ -161,5 +232,14 @@
     .table td {
         text-align: center;
         vertical-align: middle!important;
+    }
+    
+    .font-600 {
+        /*line-height: 150%;*/
+        /*display: inline-block;
+        vertical-align:sub;*/
+        /*vertical-align: middle!important;*/
+        padding: 10px 0;
+        /*text-align: center;*/
     }
 </style>
