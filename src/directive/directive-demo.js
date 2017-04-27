@@ -99,7 +99,8 @@ Vue.directive('imgsrc', {
 });
 
 
-// 当前页面的img全部都是延迟加载
+// 当前页面的img全部都是延迟加载 使用方式 一个标签底下的所有元素都会被延迟加载时间为指令后面的数字
+// v-ansyimgpage="{'ansy':2000}" 使用json形式传递参数，便于后面的扩展性
 //<img :src="imgUrl" width="200px" height="200px" style="border:1px solid black">
 Vue.directive('ansyimgpage', {
   // 已经来就绑定
@@ -112,15 +113,14 @@ Vue.directive('ansyimgpage', {
         elem_child[i].setAttribute('data-src', src);
       }
     }
-
   },
   // 当前元素插入以后
   inserted: function (el, binding) {
     window.onscroll = function () {
       var sTop = document.body.scrollTop || document.documentElement.scrollTop;
       var cHeight = document.documentElement.clientHeight || document.body.clientHeight;
-
       var elem_child = el.childNodes;
+      // 使用 块集变量 let 方便内部使用
       for (let i = 0; i < elem_child.length; i++) { //遍历子元素
         if (elem_child[i].nodeName == "IMG") {
           if (sTop + cHeight >= elem_child[i].offsetTop) {

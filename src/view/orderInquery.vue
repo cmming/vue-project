@@ -8,16 +8,16 @@
                 <div class="col-md-11 col-sm-10 pull-left">
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
-                            开始日期：
+                            <span>开始日期：</span>
                             <el-date-picker type="date" placeholder="选择日期" v-model="searchData.btime"></el-date-picker>
                         </div>
 
                         <div class="col-md-4 col-sm-12">
-                            结束日期：
+                            <span>结束日期：</span>
                             <el-date-picker type="date" placeholder="选择日期" v-model="searchData.etime"></el-date-picker>
                         </div>
                         <div class="col-md-4">
-                            商 户 ID:
+                            <span>搜索内容: </span>
                             <el-autocomplete icon="search" v-model="searchData.mid" :fetch-suggestions="querySearchAsync" placeholder="请输入内容" @select="handleSelect" :on-icon-click="searchCal"></el-autocomplete>
                             <!--<button type="button" class="btn btn-success" @click="edit(chooseItem)">
                                 <i class="fa fa-search fa-fw"></i>
@@ -81,6 +81,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <!--分页组件-->
                 <v-page :curPage="curpage" :allPage="allPage" @btn-click='listen'></v-page>
             </div>
             <div v-show="!allPage">
@@ -149,14 +150,14 @@
                     { "value": "茶芝兰（奶茶，手抓饼）", "address": "上海市普陀区同普路1435号" },
                 ];
             },
-            // 异步搜索框 
+            // 异步搜索框  输入框的内容每次改变都会触发事件
             querySearchAsync(queryString, cb){
                 var restaurants = this.restaurants;
                 console.log(queryString,restaurants.filter(this.createStateFilter(queryString)));
                 // 对返回值进行处理 （排序）
                 var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
                 cb(results);
-                // 制作延迟出现的代码
+                // 制作延迟出现的代码 模拟实际请求效果
                 // clearTimeout(this.timeout);
                 // this.timeout = setTimeout(() => {
                 // cb(results);
