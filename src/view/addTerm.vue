@@ -37,7 +37,8 @@
                                 <div class="col-lg-10">
                                     <div class="radio inline-block" v-for="radioItem in radioGroup">
                                         <div class="custom-radio m-right-xs">
-                                            <input type="radio" :id="'inlineRadio'+radioItem.value" :value="radioItem.value" v-model="formdata.enable" name="inlineRadio" v-validate="'required'">
+                                            <input v-if="radioItem.value==1" checked="checked" type="radio" :id="'inlineRadio'+radioItem.value" :value="radioItem.value" v-model="formdata.enable" name="inlineRadio" v-validate="'required'">
+                                            <input v-if="radioItem.value!=1" type="radio" :id="'inlineRadio'+radioItem.value" :value="radioItem.value" v-model="formdata.enable" name="inlineRadio" v-validate="'required'">
                                             <label :for="'inlineRadio'+radioItem.value"></label>
                                         </div>
                                         <div class="inline-block vertical-top">{{radioItem.name}}</div>

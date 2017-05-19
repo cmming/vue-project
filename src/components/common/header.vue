@@ -256,7 +256,7 @@
         ]),
         mounted(){
             // console.log(this.$store.state);
-            // this.userInfo.userName=sessionStorage.userName;
+            this.userInfo.userName=sessionStorage.userName;
         },
         methods: {
             showMenu: function() {

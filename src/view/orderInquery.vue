@@ -236,11 +236,6 @@
     }
     
     .font-600 {
-        /*line-height: 150%;*/
-        /*display: inline-block;
-        vertical-align:sub;*/
-        /*vertical-align: middle!important;*/
         padding: 10px 0;
-        /*text-align: center;*/
     }
 </style>

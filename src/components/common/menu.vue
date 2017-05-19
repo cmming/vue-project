@@ -121,6 +121,13 @@
                         title: "订单查询",
                         path: "/orderInquery"
                     }]
+                },{
+                    title:"设置",
+                    iconFont: "fa-search",
+                    childMenu: [{
+                        title: "订单查询",
+                        path: "/orderInquery"
+                    }]
                 }],
             }
         },

@@ -61,6 +61,7 @@ import breadcrumb from './components/common/breadcrumb.vue'
 import errorMsg from './components/common/formError.vue'
 import page from './components/common/page.vue'
 import selectForShowCol from './components/common/selectForShowCol.vue'
+import model from './components/common/model.vue'
 
 
 Vue.component('v-deleteModel', deleteModel)
@@ -68,9 +69,12 @@ Vue.component('v-breadcrumb', breadcrumb)
 Vue.component('v-errorMsg', errorMsg)
 Vue.component('v-page', page)
 Vue.component('v-selectForShowCol', selectForShowCol)
+Vue.component('v-model', model)
 
 // import  './element-ui.js'
 
+import modal from './plugins/modal.js'
+Vue.use(modal)
 import '../node_modules/element-ui/lib/theme-default/index.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './assets/css/animate.min.css'

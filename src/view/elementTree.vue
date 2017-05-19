@@ -1,6 +1,7 @@
 <template>
     <div>
         <!--data:显示的数据-->
+        <!--<v-model></v-model>-->
         <v-breadcrumb :breadcrumbData="toBreadcrumb"></v-breadcrumb>
         <el-tree :data="data2" :props="defaultProps" show-checkbox node-key="id" default-expand-all :expand-on-click-node="false"
             :render-content="renderContent">
@@ -82,6 +83,34 @@
             message: '取消输入'
           });       
         });
+        this.$msgbox({
+          title: '消息',
+          message: '<span>span</span>',
+          showCancelButton: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          beforeClose: (action, instance, done) => {
+            if (action === 'confirm') {
+              instance.confirmButtonLoading = true;
+              instance.confirmButtonText = '执行中...';
+              setTimeout(() => {
+                done();
+                setTimeout(() => {
+                  instance.confirmButtonLoading = false;
+                }, 300);
+              }, 3000);
+            } else {
+              done();
+            }
+          }
+        }).then(action => {
+          this.$message({
+            type: 'info',
+            message: 'action: ' + action
+          });
+        });
+        console.log('1');
+        // this.$bootModal({title:'title',innerHTML:'innerHTML'});
         
       },
 

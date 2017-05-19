@@ -134,17 +134,15 @@ Vue.directive('ansyimgpage', {
     };
   },
 });
-// Vue.directive('ansyimgpage',function(el,binding){
-//   console.log(el);
 
-//   var sTop = document.body.scrollTop||document.documentElement.scrollTop;
-//   var cHeight = document.documentElement.clientHeight || document.body.clientHeight;
-//   console.log(el.offsetTop);
-//   if(sTop+cHeight>=el.offsetTop&&el.offsetTop!=0){
-//     console.log(binding.value);
-//     el.setAttribute("src",binding.value)
-//   }
-// });
+// toggleClass
+
+Vue.directive('toggleClass',{
+  inserted:function(el,binding){
+    
+  }
+});
+
 Vue.directive('cmdemo', {
   // 已经来就绑定
   bind: function (el, binding) {
